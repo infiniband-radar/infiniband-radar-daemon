@@ -1,0 +1,10 @@
+[Unit]
+Description=InfiniBand Radar Daemon - InfiniBand Monitoring
+
+[Service]
+Type=simple
+WorkingDirectory=/etc/infiniband-radar
+ExecStart=/usr/sbin/infiniband_radar_daemon config.%i.json
+
+[Install]
+WantedBy=multi-user.target

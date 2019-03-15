@@ -1,0 +1,42 @@
+FROM ubuntu:18.10
+
+RUN apt update && apt install -y \
+    cmake make g++ \
+    libibverbs-dev libibnetdisc-dev libibmad-dev libopensm-dev libcurl4-openssl-dev \
+    rpm ruby ruby-dev rubygems
+
+RUN gem install --no-ri --no-rdoc fpm
+
+WORKDIR /project/package
+COPY config.template.json ./etc/infiniband-radar/config.template.json
+COPY infiniband-radar@.service ./usr/lib/systemd/system/infiniband-radar@.service
+
+WORKDIR /project/code
+COPY CMakeLists.txt ./
+COPY src/ ./src
+COPY 3d_party  ./3d_party
+
+WORKDIR /project/code/build
+RUN cmake .. && cmake --build . --target infiniband_radar_daemon -- -j 2
+
+WORKDIR /project/code/
+
+RUN mkdir -p ../package/usr/sbin/
+RUN mv build/infiniband_radar_daemon ../package/usr/sbin/infiniband_radar_daemon
+
+WORKDIR /project
+
+RUN mkdir -p ./packages
+
+RUN fpm \
+    -s dir \
+    -t rpm \
+    -n infiniband-radar-daemon \
+    -v 2.05 \
+    -C ./package \
+    -p packages/infiniband-radar-daemon_VERSION_ARCH.rpm \
+    -d "libcurl > 0" \
+    --description "InfiniBand Radar package, including a daemon to report metrics and topologies of fabrics" \
+    --rpm-summary "InfiniBand Radar - Service Daemon - InfiniBand Monitoring" \
+    --url "https://github.com/infiniband-radar/infiniband-radar-daemon"
+
