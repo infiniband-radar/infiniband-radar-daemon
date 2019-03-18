@@ -1,3 +1,10 @@
+# Warning
+
+This tool is using and resetting the counters of `IB_GSI_PORT_COUNTERS`
+which can interfere with other monitoring tools.
+
+The web interface and API server can be found [here](https://github.com/infiniband-radar/infiniband-radar-web).
+
 # Build
 
 ## Create RPM file
