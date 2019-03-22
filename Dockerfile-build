@@ -39,4 +39,3 @@ RUN fpm \
     --description "InfiniBand Radar package, including a daemon to report metrics and topologies of fabrics" \
     --rpm-summary "InfiniBand Radar - Service Daemon - InfiniBand Monitoring" \
     --url "https://github.com/infiniband-radar/infiniband-radar-daemon"
-

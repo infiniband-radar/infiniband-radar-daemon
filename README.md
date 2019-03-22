@@ -1,9 +1,23 @@
-# Warning
+# InfiniBand Radar Daemon
+
+If you have any questions please [open an issue](https://github.com/infiniband-radar/infiniband-radar-daemon/issues)
+
+## Warning
 
 This tool is using and resetting the counters of `IB_GSI_PORT_COUNTERS`
 which can interfere with other monitoring tools.
 
-The web interface and API server can be found [here](https://github.com/infiniband-radar/infiniband-radar-web).
+Known interferences:
+- `Mellanox's Managed Switch Interface` does not correctly display the used bandwidth
+
+## Notice
+- This daemon must run on a server that has access to InfiniBand
+- Docker is **not required** to run it, see the [pre build releases](https://github.com/infiniband-radar/infiniband-radar-daemon/releases) 
+- The web interface and API server can be found [here](https://github.com/infiniband-radar/infiniband-radar-web) and can run on a separated server.
+- Colliding hostnames must be resolved, either by a [node_map file](https://www.systutorials.com/docs/linux/man/8-ibnetdiscover/#lbAM) or renaming hosts/switches.
+- Colliding hostnames will occure if you are using (not manully renamed) unmaned switches
+
+
 
 # Build
 

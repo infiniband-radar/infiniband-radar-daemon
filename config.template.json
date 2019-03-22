@@ -8,5 +8,5 @@
   "ca_port": 1,
   "topology_update_interval_sec": 180,
   "port_stats_interval_sec": 5,
-  "node_name_map": "<OPTIONAL___DELETE_THIS_ENTRY_IF_NOT_USED>"
+  "node_name_map": "<The path to the node name map file, delete this line if not used>"
 }
