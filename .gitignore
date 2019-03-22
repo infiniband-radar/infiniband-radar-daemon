@@ -1,6 +1,6 @@
 packages/
 remote_debugging.sh
-config.json
+config/
 
 # Created by https://www.gitignore.io/api/c,c++,clion
 

@@ -18,24 +18,57 @@ Known interferences:
 - Colliding hostnames will occure if you are using (not manully renamed) unmaned switches
 
 
+# Usage
 
-# Build
+There are two options to run the daemon:
 
-## Create RPM file
+## Option 1: Use docker
 
-( Requires docker )
+Requires docker >= 17.05
+
+### Create and edit config
 
 ```sh
+mkdir -p config
+cp config.template.json config/config.<FabricId>.json
+vim config/config.<FabricId>.json
+```
+
+### Build docker container
+```sh
+docker build -t infiniband_radar_daemon .
+```
+
+### Run docker container
+```sh
+docker run  -v `pwd`/config:/config/:ro \
+            --privileged \
+            --userns=host \
+            --restart unless-stopped \
+             -d \
+             infiniband_radar_daemon:latest config.<FabricId>.json
+```
+
+Don't forget to verify that that the container is running correctly (`docker ps` / `docker logs`)
+
+## Option 2: Use RPM
+
+### Create RPM file
+
+[Download pre build releases](https://github.com/infiniband-radar/infiniband-radar-daemon/releases) **or** build manually:
+
+```sh
+# Requires docker
 ./build_rpm.sh
 ```
 
-## Install
+### Install
 
 ```sh
 sudo yum localinstall packages/fabric-radar-daemon_<version>.rpm
 ```
 
-## Edit config
+### Create and edit config
 
 ```sh
 cd /etc/fabric-radar
@@ -43,17 +76,11 @@ cp config.template.json config.<FabricId>.json
 vim config.<FabricId>.json
 ```
 
-## Service
+### Service
 
 ```sh
 systemctl enable fabric-radar@<FabricId>
 systemctl start fabric-radar@<FabricId>
-```
-
-## Requirement for development:
-
-```sh
-apt install libibverbs-dev libibnetdisc-dev libibmad-dev libopensm-dev libcurl4-openssl-dev
 ```
 
 # Licence
