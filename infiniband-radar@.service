@@ -5,6 +5,7 @@ Description=InfiniBand Radar Daemon - InfiniBand Monitoring
 Type=simple
 WorkingDirectory=/etc/infiniband-radar
 ExecStart=/usr/sbin/infiniband_radar_daemon config.%i.json
+StandardOutput=null
 
 [Install]
 WantedBy=multi-user.target
