@@ -7,7 +7,7 @@
 
 namespace infiniband_radar {
     /**
-     * Static class to
+     * Static class to convert some kind of arbitrary value to a human readable string
      */
     class HumanReadable {
     public:
