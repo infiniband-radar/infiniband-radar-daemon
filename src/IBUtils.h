@@ -9,7 +9,7 @@
 namespace infiniband_radar {
     class IBUtils {
     private:
-        static const uint32_t bitwise_highest(uint32_t value_a, uint32_t value_b);
+        static uint32_t bitwise_highest(uint32_t value_a, uint32_t value_b);
 
     public:
         /**

@@ -2,7 +2,7 @@
 #include "IBUtils.h"
 #include "HumanReadable.h"
 
-const uint32_t infiniband_radar::IBUtils::bitwise_highest(uint32_t value_a, uint32_t value_b) {
+uint32_t infiniband_radar::IBUtils::bitwise_highest(uint32_t value_a, uint32_t value_b) {
     uint32_t n = value_a & value_b;
     n |= (n >>  1);
     n |= (n >>  2);
