@@ -1,4 +1,4 @@
-FROM ubuntu:18.10
+FROM debian:buster-slim as builder
 
 RUN apt update && apt install -y \
     cmake make g++ \
