@@ -71,7 +71,6 @@ const uint32_t infiniband_radar::IBUtils::get_highest_speed(uint32_t speed, uint
 }
 
 const uint32_t infiniband_radar::IBUtils::get_highest_speed_ext(uint32_t speed_ext, uint32_t peer_speed_ext) {
-    //TODO: HDR Support but is not defined in ib_types.h
     return bitwise_highest(speed_ext, peer_speed_ext);
 }
 
