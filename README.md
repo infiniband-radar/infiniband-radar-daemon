@@ -15,7 +15,7 @@ Known interferences:
 - Docker is **not required** to run it, see the [pre build releases](https://github.com/infiniband-radar/infiniband-radar-daemon/releases) 
 - The web interface and API server can be found [here](https://github.com/infiniband-radar/infiniband-radar-web) and can run on a separated server.
 - Colliding hostnames must be resolved, either by a [node_map file](https://www.systutorials.com/docs/linux/man/8-ibnetdiscover/#lbAM) or renaming hosts/switches.
-- Colliding hostnames will occure if you are using (not manully renamed) unmaned switches
+- Colliding hostnames will occure if you are using (not manully renamed) unmanaged switches
 
 
 # Usage
