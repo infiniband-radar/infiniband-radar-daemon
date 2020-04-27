@@ -4,6 +4,7 @@
 #include "IBIncludes.h"
 #include <string>
 #include <iomanip>
+#include <sstream>
 
 namespace infiniband_radar {
     /**
