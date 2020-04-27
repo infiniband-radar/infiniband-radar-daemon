@@ -14,8 +14,25 @@ using infiniband_radar::ApiClient;
 static std::promise<void> exit_flag;
 static auto exit_flag_future = exit_flag.get_future();
 
+// check for std::make_unique, which is C++14 specific, and provide a local
+// implementation for C++11
+#ifdef __cpp_lib_make_unique
+#include <memory>
+namespace lib {
+    using std::make_unique;
+}
+#else
+namespace lib {
+    template<typename T, typename... TArgs>
+    std::unique_ptr<T> make_unique(TArgs&&... args)
+    {
+        return std::unique_ptr<T>(new T(std::forward<TArgs>(args)...));
+    }
+}
+#endif
+
 std::unique_ptr<std::thread> set_interval(const std::function<void()> &function, long ms, const std::string& desc) {
-    return std::make_unique<std::thread>([function, ms, desc]() {
+    return lib::make_unique<std::thread>([function, ms, desc]() {
         auto chronoMs = std::chrono::milliseconds(ms);
         auto chronoLastIterationTook = std::chrono::milliseconds(0);
 
