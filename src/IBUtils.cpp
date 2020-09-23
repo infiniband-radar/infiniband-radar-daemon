@@ -63,7 +63,17 @@ ib_portid_t infiniband_radar::IBUtils::get_queryable_port_id(ibnd_node_t *node) 
 }
 
 uint32_t infiniband_radar::IBUtils::get_highest_width(uint32_t width, uint32_t peer_width) {
-    return bitwise_highest(width, peer_width);
+    uint32_t bestMatch = bitwise_highest(width, peer_width);
+    if (bestMatch == IB_LINK_WIDTH_ACTIVE_2X) {
+        // Exclude 2x since it is the highest bit value but the connection could be 4x 8x 12x
+        uint32_t reducedMatch = bitwise_highest(width & ~(uint32_t)(IB_LINK_WIDTH_ACTIVE_2X), peer_width & ~(uint32_t)(IB_LINK_WIDTH_ACTIVE_2X));
+        if (reducedMatch == IB_LINK_WIDTH_ACTIVE_1X) {
+            return bestMatch; // The linkspeed is 1x but the best we detected was 2x
+        } else {
+            return reducedMatch;
+        }
+    }
+    return bestMatch;
 }
 
 uint32_t infiniband_radar::IBUtils::get_highest_speed(uint32_t speed, uint32_t peer_speed) {
