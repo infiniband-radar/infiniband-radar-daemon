@@ -21,19 +21,19 @@ namespace infiniband_radar {
 
         static ib_portid_t get_queryable_port_id(ibnd_node_t* node);
 
-        static const uint32_t get_highest_width(uint32_t width, uint32_t peer_width);
+        static uint32_t get_highest_width(uint32_t width, uint32_t peer_width);
 
-        static const uint32_t get_highest_speed(uint32_t speed, uint32_t peer_speed);
+        static uint32_t get_highest_speed(uint32_t speed, uint32_t peer_speed);
 
-        static const uint32_t get_highest_speed_ext(uint32_t speed_ext, uint32_t peer_speed_ext);
+        static uint32_t get_highest_speed_ext(uint32_t speed_ext, uint32_t peer_speed_ext);
 
-        static const uint32_t get_port_capability_mask(ibnd_port* port);
+        static uint32_t get_port_capability_mask(ibnd_port* port);
 
-        static const bool is_port_capable_for_extended_speed(ibnd_port* port);
+        static bool is_port_capable_for_extended_speed(ibnd_port* port);
 
-        static const std::string get_possible_port_speed(ibnd_port* port);;
+        static std::string get_possible_port_speed(ibnd_port* port);;
 
-        static const std::string get_active_port_speed(ibnd_port* port);;
+        static std::string get_active_port_speed(ibnd_port* port);;
     };
 }
 

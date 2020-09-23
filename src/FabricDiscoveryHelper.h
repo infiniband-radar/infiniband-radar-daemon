@@ -32,7 +32,7 @@ namespace infiniband_radar
 
         void update_node_map();
 
-        const std::string& get_node_alias_name(uint64_t guid, const std::string& original_description);
+        const std::string& get_node_alias_name(uint64_t guid, const std::string& original_description) const;
     };
 }
 

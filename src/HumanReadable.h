@@ -47,8 +47,6 @@ namespace infiniband_radar {
             switch (width) {
                 case IB_LINK_WIDTH_ACTIVE_1X:
                     return "1x";
-                // TODO: Hmm, I did not find any constant that matches 2x width
-                #define IB_LINK_WIDTH_ACTIVE_2X 16
                 case IB_LINK_WIDTH_ACTIVE_2X:
                     return "2x";
                 case IB_LINK_WIDTH_ACTIVE_4X:
@@ -79,8 +77,6 @@ namespace infiniband_radar {
                             return "FDR";
                         case IB_LINK_SPEED_EXT_ACTIVE_25:
                             return "EDR";
-                        // TODO: Hmm, I did not find any constant that matches HDR
-                        #define IB_LINK_SPEED_EXT_ACTIVE_50 4
                         case IB_LINK_SPEED_EXT_ACTIVE_50:
                             return "HDR";
                         default:

@@ -132,7 +132,7 @@ std::shared_ptr<json> infiniband_radar::InfiniBandRadar::get_port_stats(uint32_t
 }
 
 void infiniband_radar::InfiniBandRadar::reset_or_setup() {
-    this->update_fabric_topology();
+    update_fabric_topology();
 
     // Reset all counters in the fabric
     auto throw_away = std::make_shared<json>();

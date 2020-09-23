@@ -62,19 +62,19 @@ ib_portid_t infiniband_radar::IBUtils::get_queryable_port_id(ibnd_node_t *node) 
     return port_id;
 }
 
-const uint32_t infiniband_radar::IBUtils::get_highest_width(uint32_t width, uint32_t peer_width) {
+uint32_t infiniband_radar::IBUtils::get_highest_width(uint32_t width, uint32_t peer_width) {
     return bitwise_highest(width, peer_width);
 }
 
-const uint32_t infiniband_radar::IBUtils::get_highest_speed(uint32_t speed, uint32_t peer_speed) {
+uint32_t infiniband_radar::IBUtils::get_highest_speed(uint32_t speed, uint32_t peer_speed) {
     return bitwise_highest(speed, peer_speed);
 }
 
-const uint32_t infiniband_radar::IBUtils::get_highest_speed_ext(uint32_t speed_ext, uint32_t peer_speed_ext) {
+uint32_t infiniband_radar::IBUtils::get_highest_speed_ext(uint32_t speed_ext, uint32_t peer_speed_ext) {
     return bitwise_highest(speed_ext, peer_speed_ext);
 }
 
-const uint32_t infiniband_radar::IBUtils::get_port_capability_mask(ibnd_port *port) {
+uint32_t infiniband_radar::IBUtils::get_port_capability_mask(ibnd_port *port) {
     uint8_t* info = &port->info[0];
     if (port->node->type == IB_NODE_SWITCH) {
         if (port->node->ports[0])
@@ -85,11 +85,11 @@ const uint32_t infiniband_radar::IBUtils::get_port_capability_mask(ibnd_port *po
     return mad_get_field(info, 0, IB_PORT_CAPMASK_F);
 }
 
-const bool infiniband_radar::IBUtils::is_port_capable_for_extended_speed(ibnd_port *port) {
+bool infiniband_radar::IBUtils::is_port_capable_for_extended_speed(ibnd_port *port) {
     return static_cast<const bool>(get_port_capability_mask(port) & CL_NTOH32(IB_PORT_CAP_HAS_EXT_SPEEDS));
 }
 
-const std::string infiniband_radar::IBUtils::get_possible_port_speed(ibnd_port *port) {
+std::string infiniband_radar::IBUtils::get_possible_port_speed(ibnd_port *port) {
     if(!port->remoteport) {
         return "???";
     }
@@ -123,7 +123,7 @@ const std::string infiniband_radar::IBUtils::get_possible_port_speed(ibnd_port *
     return HumanReadable::link_type(possible_width, possible_speed, possible_speed_ext, possible_fdr10);
 }
 
-const std::string infiniband_radar::IBUtils::get_active_port_speed(ibnd_port *port) {
+std::string infiniband_radar::IBUtils::get_active_port_speed(ibnd_port *port) {
     uint32_t width = mad_get_field(port->info, 0, IB_PORT_LINK_WIDTH_ACTIVE_F);
     uint32_t speed = mad_get_field(port->info, 0, IB_PORT_LINK_SPEED_ACTIVE_F);
 

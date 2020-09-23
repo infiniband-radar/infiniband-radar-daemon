@@ -71,11 +71,12 @@ long infiniband_radar::FabricDiscoveryHelper::foreach_node(std::function<void(ib
 }
 
 
-const std::string& infiniband_radar::FabricDiscoveryHelper::get_node_alias_name(uint64_t guid, const std::string& original_description) {
-    if(_node_name_map.count(guid)) {
-        return _node_name_map[guid];
+const std::string& infiniband_radar::FabricDiscoveryHelper::get_node_alias_name(uint64_t guid, const std::string& original_description) const {
+    auto itr = _node_name_map.find(guid);
+    if (itr == _node_name_map.end()) {
+        return original_description;
     }
-    return original_description;
+    return itr->second;
 }
 
 
