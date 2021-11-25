@@ -13,7 +13,7 @@ License:	GPLv3
 URL:		https://github.com/infiniband-radar/%{name}
 Source0:	https://github.com/infiniband-radar/%{name}/archive/v%{version}/%{name}-%{version}.tar.gz
 
-BuildRequires:  cmake3 gcc-c++ libibmad-devel infiniband-diags-devel libcurl-devel
+BuildRequires:  cmake3 gcc-c++ libibmad-devel infiniband-diags-devel libcurl-devel opensm-devel
 %{?systemd_requires}
 BuildRequires: systemd
 Requires:       libibmad infiniband-diags libcurl
